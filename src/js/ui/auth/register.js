@@ -1,3 +1,24 @@
+import { register } from "../../api/auth/register";
+export async function onRegister(event) {
+  event.preventDefault();
+
+  const form = event.target; // Get the form element that triggered the event
+  const formData = new FormData(form);
+  const profile = Object.fromEntries(formData.entries());
+
+  console.log(profile);
+
+  // Will add fetch logic? Send to API but separate file
+  // src/js/api/auth/register.js
+
+  register(profile);
+}
+
+const form = document.querySelector("#register");
+if (form) {
+  form.addEventListener("submit", onRegister);
+}
+
 // export async function onRegister(event) {
 //   const form = document.querySelector("#register");
 
@@ -11,20 +32,3 @@
 // }
 
 // // Try removing the from = event.target since it is already defined outside the event listener
-
-export async function onRegister(event) {
-  event.preventDefault();
-
-  const form = event.target; // Get the form element that triggered the event
-  const formData = new FormData(form);
-  const profile = Object.fromEntries(formData.entries());
-
-  console.log(profile);
-
-  // Will add fetch logic here?
-}
-
-const form = document.querySelector("#register");
-if (form) {
-  form.addEventListener("submit", onRegister);
-}
