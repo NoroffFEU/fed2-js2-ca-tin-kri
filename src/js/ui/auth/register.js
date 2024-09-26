@@ -1,3 +1,4 @@
+// old code here-----------------
 import { register } from "../../api/auth/register";
 export async function onRegister(event) {
   event.preventDefault();
@@ -18,6 +19,7 @@ const form = document.querySelector("#register");
 if (form) {
   form.addEventListener("submit", onRegister);
 }
+// end old code-----------
 
 // export async function onRegister(event) {
 //   const form = document.querySelector("#register");
@@ -32,3 +34,4 @@ if (form) {
 // }
 
 // // Try removing the from = event.target since it is already defined outside the event listener
+// src/js/api/auth/register.js
