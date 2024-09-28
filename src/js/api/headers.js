@@ -9,3 +9,5 @@ export function headers() {
 
   return headers;
 }
+// So maybe i should move my authFetch.js to this file
+//because authFetch.js is to return te correct header?

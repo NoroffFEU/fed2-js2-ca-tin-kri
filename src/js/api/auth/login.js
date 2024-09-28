@@ -1,9 +1,10 @@
 // // export async function login({ email, password }) {}
 
-// import { API_AUTH_LOGIN } from "../constants";
+//---This code shows createpost but lots of errors---------------------
 
-// const action = "/auth/login";
-// const method = "post";
+// import { API_AUTH_LOGIN } from "../constants";
+// import { save } from "../../storage/storage.js";
+// import { createPost } from "../post/create.js"; // Import createPost function
 
 // export async function login({ email, password }) {
 //   const loginURL = API_AUTH_LOGIN;
@@ -14,47 +15,7 @@
 //       headers: {
 //         "Content-Type": "application/json",
 //       },
-//       method,
-//       body,
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Login failed");
-//     }
-
-//     const result = await response.json();
-//     console.log("API Response:", result);
-
-//     // localStorage.setItem("token", result.accessToken);
-//     console.log("This is your received token:", token);
-//     localStorage.setItem("accessToken", token);
-
-//     console.log("Login successful:", result);
-//     // Save token or handle successful login here
-//   } catch (error) {
-//     console.error("Login error:", error);
-//   }
-// }
-
-// const token = localStorage.getItem("token");
-
-//code redundant? 27.09
-// import { API_AUTH_LOGIN } from "../constants";
-// import * as storage from "../../storage/storage.js";
-
-// const action = "/auth/login";
-// const method = "post";
-
-// export async function login({ email, password }) {
-//   const loginURL = API_AUTH_LOGIN;
-//   const body = JSON.stringify({ email, password });
-
-//   try {
-//     const response = await fetch(loginURL, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       method,
+//       method: "post",
 //       body,
 //     });
 
@@ -65,31 +26,45 @@
 //     const result = await response.json();
 //     console.log("API Response:", result);
 
+//     // Store the token in localStorage
 //     const token = result.data && result.data.accessToken;
-
 //     if (token) {
-//       localStorage.setItem("accessToken", token);
+//       save("token", token); // Use a single key for storing the token
 //       console.log("Token stored successfully:", token);
 //     } else {
 //       console.error("Token not found in the response.");
+//       return;
 //     }
+
+//     // Optional: Store user profile data
+//     const userProfile = { ...result.data };
+//     delete userProfile.accessToken;
+//     save("profile", userProfile);
+
+//     alert("You are now logged in!");
+
+//     // Call post creation after login success
+//     await handlePostCreation(); // Ensure this is called correctly
 //   } catch (error) {
 //     console.error("Login error:", error);
 //   }
-
-//   //new code for storing token and profile details separately
-//   const { accessToken, ...user } = await response.json;
-//   storage.save("token", accessToken);
-//   storage.save("profile", user);
 // }
-// ------
 
+// async function handlePostCreation() {
+//   console.log("Creating post..."); // Verify function call
+
+//   const postData = {
+//     title: "Post Example",
+//     body: "Also an example",
+//   };
+
+//   const createdPost = await createPost(postData);
+// }
 import { API_AUTH_LOGIN } from "../constants";
 import * as storage from "../../storage/storage.js";
 
-// ---- redundant code?
-// const action = "/auth/login";
-// const method = "post";
+const action = "/auth/login";
+const method = "post";
 
 export async function login({ email, password }) {
   const loginURL = API_AUTH_LOGIN;
