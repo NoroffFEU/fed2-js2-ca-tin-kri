@@ -66,6 +66,8 @@ export async function login(profile) {
   const result = await response.json();
   console.log(result);
 
-  localStorage.setItem("token", result.accessToken);
-  console.log("token");
+  const token = result.data.accessToken;
+
+  localStorage.setItem("token", token);
+  console.log("Token stored successfully:", token);
 }
