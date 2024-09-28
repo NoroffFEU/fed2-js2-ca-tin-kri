@@ -1,10 +1,54 @@
 // // export async function login({ email, password }) {}
 
+<<<<<<< HEAD
 //---This code shows createpost but lots of errors---------------------
 
 import { API_AUTH_LOGIN } from "../constants";
 import { save } from "../../storage/storage.js";
 import { createPost } from "../post/create.js"; // Import createPost function
+=======
+// import { API_AUTH_LOGIN } from "../constants";
+
+// const action = "/auth/login";
+// const method = "post";
+
+// export async function login({ email, password }) {
+//   const loginURL = API_AUTH_LOGIN;
+//   const body = JSON.stringify({ email, password });
+
+//   try {
+//     const response = await fetch(loginURL, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       method,
+//       body,
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Login failed");
+//     }
+
+//     const result = await response.json();
+//     console.log("API Response:", result);
+
+//     // localStorage.setItem("token", result.accessToken);
+//     console.log("This is your received token:", token);
+//     localStorage.setItem("accessToken", token);
+
+//     console.log("Login successful:", result);
+//     // Save token or handle successful login here
+//   } catch (error) {
+//     console.error("Login error:", error);
+//   }
+// }
+
+// const token = localStorage.getItem("token");
+import { API_AUTH_LOGIN } from "../constants";
+
+const action = "/auth/login";
+const method = "post";
+>>>>>>> parent of 4358228 (removed redundant code)
 
 export async function login({ email, password }) {
   const loginURL = API_AUTH_LOGIN;
@@ -15,7 +59,7 @@ export async function login({ email, password }) {
       headers: {
         "Content-Type": "application/json",
       },
-      method: "post",
+      method,
       body,
     });
 
@@ -24,12 +68,20 @@ export async function login({ email, password }) {
     }
 
     const result = await response.json();
-    console.log("API Response:", result);
+    console.log("API Response:", result); // Log the full API response
 
+<<<<<<< HEAD
     // Store the token in localStorage
+=======
+    // Access the token from the nested data object
+>>>>>>> parent of 4358228 (removed redundant code)
     const token = result.data && result.data.accessToken;
     if (token) {
+<<<<<<< HEAD
       save("token", token); // Use a single key for storing the token
+=======
+      localStorage.setItem("accessToken", token);
+>>>>>>> parent of 4358228 (removed redundant code)
       console.log("Token stored successfully:", token);
     } else {
       console.error("Token not found in the response.");
