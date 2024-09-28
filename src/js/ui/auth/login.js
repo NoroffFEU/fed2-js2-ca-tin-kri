@@ -18,7 +18,7 @@ if (form) {
   form.addEventListener("submit", onLogin);
 }
 
-import { router } from "../../router/index.js"; // Adjust the path as necessary
+// import { router } from "../../router/index.js"; // Adjust the path as necessary
 
 async function handleLoginSuccess() {
   // Save the token to localStorage or a variable
