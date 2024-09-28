@@ -1,3 +1,4 @@
+// this page is the same as src/js/index.js in video mark 40:11
 import { onRegister } from "../../ui/auth/register";
 
 // const form = document.forms.register;

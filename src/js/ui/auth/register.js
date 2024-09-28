@@ -1,37 +1,18 @@
-// old code here-----------------
+// this is the same as src/js/handlers/register.js in video 44:00-----------------
 import { register } from "../../api/auth/register";
 export async function onRegister(event) {
+  //called in video 39:50 :setRegisterFromListener//
   event.preventDefault();
 
   const form = event.target; // Get the form element that triggered the event
   const formData = new FormData(form);
   const profile = Object.fromEntries(formData.entries());
 
-  console.log(profile);
-
-  // Will add fetch logic? Send to API but separate file
-  // src/js/api/auth/register.js
-
+  console.log("it worked");
+  // send it to the api
   register(profile);
 }
 
-const form = document.querySelector("#register");
-if (form) {
-  form.addEventListener("submit", onRegister);
-}
-// end old code-----------
-
-// export async function onRegister(event) {
-//   const form = document.querySelector("#register");
-
-//   form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     const form = event.target;
-//     const formData = new FormData(form);
-//     const profile = Object.fromEntries(formData.entries());
-//     console.log(profile);
-//   });
-// }
-
-// // Try removing the from = event.target since it is already defined outside the event listener
-// src/js/api/auth/register.js
+// send it to the api but in another file because of function responsibility
+//listing to the form  and api communication need to be separate so we can test each one of them
+//the api communication is in src/js/api/auth/register.js

@@ -1,10 +1,11 @@
 import { API_AUTH_REGISTER } from "../constants";
-
-const action = "/auth/register";
+//redundant since API_AUTH_REGISTER already gives the path
+// const action = "/auth/register";
 const method = "post";
 
 export async function register(profile) {
   const registerURL = API_AUTH_REGISTER;
+  console.log(registerURL);
   const body = JSON.stringify(profile);
 
   const response = await fetch(registerURL, {
