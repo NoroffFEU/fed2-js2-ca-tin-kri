@@ -48,6 +48,9 @@ import { API_AUTH_LOGIN } from "../constants";
 
 const action = "/auth/login";
 const method = "post";
+<<<<<<< HEAD
+>>>>>>> parent of 4358228 (removed redundant code)
+=======
 >>>>>>> parent of 4358228 (removed redundant code)
 
 export async function login({ email, password }) {
@@ -70,6 +73,7 @@ export async function login({ email, password }) {
     const result = await response.json();
     console.log("API Response:", result); // Log the full API response
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Store the token in localStorage
 =======
@@ -97,10 +101,22 @@ export async function login({ email, password }) {
 
     // Call post creation after login success
     await handlePostCreation(); // Ensure this is called correctly
+=======
+    // Access the token from the nested data object
+    const token = result.data && result.data.accessToken;
+
+    if (token) {
+      localStorage.setItem("accessToken", token);
+      console.log("Token stored successfully:", token);
+    } else {
+      console.error("Token not found in the response.");
+    }
+>>>>>>> parent of 4358228 (removed redundant code)
   } catch (error) {
     console.error("Login error:", error);
   }
 }
+<<<<<<< HEAD
 
 async function handlePostCreation() {
   console.log("Creating post..."); // Verify function call
@@ -161,3 +177,5 @@ async function handlePostCreation() {
 //   }
 //   alert("You are now logged in!");
 // }
+=======
+>>>>>>> parent of 4358228 (removed redundant code)

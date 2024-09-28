@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+src/js/api/auth/login.js
+src/js/storage/storage.js
