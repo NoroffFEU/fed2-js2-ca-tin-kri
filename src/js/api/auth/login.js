@@ -47,6 +47,7 @@
 //----------------
 
 import { API_AUTH_LOGIN } from "../constants";
+import * as storage from "../../storage/storage";
 
 const method = "post";
 
@@ -63,11 +64,18 @@ export async function login(profile) {
     body,
   });
 
-  const result = await response.json();
-  console.log(result);
+  const {
+    data: { accessToken, ...user },
+  } = await response.json();
 
-  const token = result.data.accessToken;
+  console.log("Token stored successfully:", accessToken);
 
-  localStorage.setItem("token", token);
-  console.log("Token stored successfully:", token);
+  if (accessToken) {
+    storage.save("token", accessToken);
+    storage.save("profile", user);
+    console.log("User profile stored successfully:", user);
+  } else {
+    console.error("Failed to get access to token");
+  }
+  alert("You are now logged in!");
 }
