@@ -86,28 +86,53 @@
 //     console.error("Error creating post:", error);
 //   }
 // }
-import { authFetch } from "../authFetch";
+// import { authFetch } from "../authFetch";
+// import { API_SOCIAL_POSTS } from "../constants";
+
+// export async function createPost(postData) {
+//   console.log("createPost function called with data:", postData); // Log to verify the function call
+
+//   const createPostURL = API_SOCIAL_POSTS;
+
+//   try {
+//     const response = await authFetch(createPostURL, {
+//       method: "POST",
+//       body: JSON.stringify(postData),
+//     });
+
+//     if (!response.ok) {
+//       const errorResponse = await response.json(); // Get error details
+//       console.error("Server response error:", errorResponse);
+//       throw new Error("Failed to create post: " + errorResponse.message);
+//     }
+
+//     const createdPost = await response.json();
+//     console.log("Created post:", createdPost); // Log the created post
+//     return createdPost;
+//   } catch (error) {
+//     console.error("Error creating post:", error);
+//   }
+// }
+import { getHeaders } from "../headers"; // Import getHeaders utility function
 import { API_SOCIAL_POSTS } from "../constants";
 
 export async function createPost(postData) {
-  console.log("createPost function called with data:", postData); // Log to verify the function call
-
   const createPostURL = API_SOCIAL_POSTS;
 
   try {
-    const response = await authFetch(createPostURL, {
+    const response = await fetch(createPostURL, {
       method: "POST",
+      headers: getHeaders(), // Use getHeaders to include the token and API key
       body: JSON.stringify(postData),
     });
 
     if (!response.ok) {
-      const errorResponse = await response.json(); // Get error details
-      console.error("Server response error:", errorResponse);
-      throw new Error("Failed to create post: " + errorResponse.message);
+      const errorResponse = await response.json();
+      throw new Error(`Failed to create post: ${errorResponse.message}`);
     }
 
     const createdPost = await response.json();
-    console.log("Created post:", createdPost); // Log the created post
+    console.log("Created post:", createdPost);
     return createdPost;
   } catch (error) {
     console.error("Error creating post:", error);
