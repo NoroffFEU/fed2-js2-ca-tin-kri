@@ -1,5 +1,3 @@
-// export async function onLogin(event) {}
-
 import { login } from "../../api/auth/login";
 
 export async function onLogin(event) {
@@ -8,7 +6,7 @@ export async function onLogin(event) {
   const form = event.target;
   const formData = new FormData(form);
   const credentials = Object.fromEntries(formData.entries());
-
+  console.log("it worked logging in");
   // Call the login API
   login(credentials);
 }
@@ -27,3 +25,23 @@ async function handleLoginSuccess() {
   // Navigate to the posts page
   router.navigate("/posts"); // Use the correct path based on your router setup
 }
+
+// this is the same as src/js/handlers/register.js in video 44:00-----------------
+
+///---new code from 57:40
+
+// import { login } from "../../api/auth/login";
+
+// export function onLogin() {
+//   const form = document.querySelector("#login");
+
+//   form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     const form = event.target;
+//     const formData = new FormData(form);
+//     const profile = Object.fromEntries(formData.entries());
+
+//     console.log("Form submitted successfully");
+//     login(profile);
+//   });
+// }

@@ -9,3 +9,5 @@ const form = document.querySelector("#register");
 if (form) {
   form.addEventListener("submit", onRegister);
 }
+// in 58:50 2 event listneres cant be at the same time so
+//makes sense to use src/js/router/views/login.js
