@@ -1,5 +1,7 @@
 // export async function createPost(postData)
 
+import { authFetch } from "../authFetch";
+
 // export async function createPost({ title, body, tags, media }) {
 //   const createPostURL = API_SOCIAL_POSTS;
 //   const token = load("accessToken");
@@ -113,28 +115,40 @@
 //     console.error("Error creating post:", error);
 //   }
 // }
-import { getHeaders } from "../headers"; // Import getHeaders utility function
-import { API_SOCIAL_POSTS } from "../constants";
+// import { getHeaders } from "../headers"; // Import getHeaders utility function
+// import { API_SOCIAL_POSTS } from "../constants";
+
+// export async function createPost(postData) {
+//   const createPostURL = API_SOCIAL_POSTS;
+
+//   try {
+//     const response = await fetch(createPostURL, {
+//       method: "POST",
+//       headers: getHeaders(), // Use getHeaders to include the token and API key
+//       body: JSON.stringify(postData),
+//     });
+
+//     if (!response.ok) {
+//       const errorResponse = await response.json();
+//       throw new Error(`Failed to create post: ${errorResponse.message}`);
+//     }
+
+//     const createdPost = await response.json();
+//     console.log("Created post:", createdPost);
+//     return createdPost;
+//   } catch (error) {
+//     console.error("Error creating post:", error);
+//   }
+// }
 
 export async function createPost(postData) {
   const createPostURL = API_SOCIAL_POSTS;
 
-  try {
-    const response = await fetch(createPostURL, {
-      method: "POST",
-      headers: getHeaders(), // Use getHeaders to include the token and API key
-      body: JSON.stringify(postData),
-    });
+  const response = await authFetch(createPostURL, {
+    body: JSON.stringify(postData),
+  });
 
-    if (!response.ok) {
-      const errorResponse = await response.json();
-      throw new Error(`Failed to create post: ${errorResponse.message}`);
-    }
+  const post = await response.json;
 
-    const createdPost = await response.json();
-    console.log("Created post:", createdPost);
-    return createdPost;
-  } catch (error) {
-    console.error("Error creating post:", error);
-  }
+  console.log(post);
 }

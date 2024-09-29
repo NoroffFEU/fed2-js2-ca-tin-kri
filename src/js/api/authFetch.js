@@ -1,21 +1,22 @@
 // // ---- authorized fetch  no need for this one? token is stored in local on js/api/auth/login.js
 // //
 // import { load } from "../storage/storage";
+const action = "/posts";
 
-// export function headers() {
-//   const token = load("token");
-//   return {
-//     "Content-Type": "application/json",
-//     Authorization: `Bearer ${token}`,
-//   };
-// }
+export function headers() {
+  const token = load("accessToken");
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`,
+  };
+}
 
-// export async function authFetch(url, options) {
-//   return fetch(url, {
-//     ...options,
-//     headers: headers(),
-//   });
-// }
+export async function authFetch(url, options) {
+  return fetch(url, {
+    ...options,
+    headers: headers(),
+  });
+}
 // import { load } from "../storage/storage";
 
 // export function headers() {
