@@ -1,17 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
     <script type="module" src="/src/app.js"></script>
   </head>
 
   <body>
     <h1>Register</h1>
 
-    <form name="register">
+    <!-- method post and action to the auth register. action is going to store the endpoint to the api when adding event listener 24:30 -->
+    <!-- Renamed: from form name="register" to  form id="registerForm" -->
+    <!-- deleted method="post" action="/auth/register" -->
+    <div id="register-page-content">
+      <form name="register">
       <div>
         <label for="name">Name</label>
         <input
@@ -21,7 +26,7 @@
           required
           maxlength="20"
           pattern="^[\w]+$"
-          title="Please enter a username using only letters and numbers"
+          title="Please enter a username using only lower case and upper case letters, numbers and underscore (_). Example: User_123"
         />
       </div>
 
@@ -33,7 +38,7 @@
           name="email"
           required
           pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-          title="Please enter a valid noroff.no or stud.noroff.no address"
+          title="Please enter a valid noroff.no or stud.noroff.no address. Example: user_123@(stud)noroff.no"
         />
       </div>
 
@@ -49,7 +54,8 @@
       </div>
 
       <a href="/auth/login/">Login</a>
-      <button>Register</button>
+      <button type="submit">Register</button>
+      <div id="registration-message"></div>
     </form>
   </body>
 </html>
