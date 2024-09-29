@@ -1,8 +1,5 @@
 import { readPost, readPosts } from "../../api/post/read";
-import { postsTemplate } from "../templates/postsTemplate";
-import { findPostID } from "../../utilities/findPostID";
-import { singlePostTemplate } from "../templates/singlePostTemplate";
-import { load } from "../../api/storage/load";
+import { load } from "../../storage/load";
 
 export async function renderPost() {
   const postContainer = document.getElementById("post-container");
@@ -23,10 +20,4 @@ export async function renderPosts() {
   postElements.forEach((postElement) => {
     postsContainer.appendChild(postElement);
   });
-}
-
-export async function renderPostsByUser() {
-  const postsContainer = document.getElementById("user-posts");
-  const profile = load("profile");
-  const profileName = profile.name;
 }

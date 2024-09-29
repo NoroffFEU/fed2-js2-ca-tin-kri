@@ -1,23 +1,15 @@
 import { createPost } from "../../api/post/create";
 
-function MediaObject(stringURL, stringAlt) {
-  const media = {
-    url: stringURL,
-    alt: stringAlt,
-  };
-
-  if (stringURL === "") {
-    return null;
-  } else {
-    return media;
-  }
+function MediaObject(url, alt) {
+  if (!url) return null;
+  return { url, alt };
 }
 
-function stringToArray(inputString) {
-  return inputString
-    .trim()
+function stringToArray(input) {
+  return input
     .split(",")
-    .map((item) => item.trim());
+    .map((item) => item.trim())
+    .filter(Boolean);
 }
 
 export async function onCreatePost(event) {
