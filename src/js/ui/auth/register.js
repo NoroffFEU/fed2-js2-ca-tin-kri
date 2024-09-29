@@ -4,7 +4,7 @@ export async function onRegister(event) {
   //called in video 39:50 :setRegisterFromListener//
   event.preventDefault();
 
-  const form = event.target; // Get the form element that triggered the event
+  const form = event.target;
   const formData = new FormData(form);
   const profile = Object.fromEntries(formData.entries());
 

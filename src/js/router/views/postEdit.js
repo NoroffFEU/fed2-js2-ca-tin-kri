@@ -1,10 +1,15 @@
+import { onUpdatePost } from "../../ui/post/update";
 import { authGuard } from "../../utilities/authGuard";
-import { updatePost } from "../../api/post/";
+import { populateForm } from "../../utilities/populateForm";
 
-authGuard();
+//Genius function from maddie
+function init() {
+  authGuard();
 
-updatePost({
-  id: 2496,
-  title: "Example Post is here and it is UPDATED",
-  body: "This is also an UPDATED example body",
-});
+  populateForm();
+
+  const form = document.forms.editPost;
+  form.addEventListener("submit", onUpdatePost);
+}
+
+init();

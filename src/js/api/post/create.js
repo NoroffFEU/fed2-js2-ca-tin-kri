@@ -1,26 +1,19 @@
-import { API_SOCIAL_POSTS, API_KEY } from "../constants"; // Ensure constants are imported
+import { authFetch } from "../authFetch";
+import { API_SOCIAL_POSTS } from "../constants";
 
-export async function createPost(postData) {
-  const token = localStorage.getItem("token"); // Fetch token from localStorage
+export async function createPost({ title, body, tags, media }) {
+  const method = "POST";
 
-  if (!token) {
-    throw new Error("No token found, please login first.");
-  }
-
-  const response = await fetch(API_SOCIAL_POSTS, {
-    // No extra "/post" here
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-      "X-Noroff-API-Key": API_KEY,
-    },
-    body: JSON.stringify(postData),
+  const response = await authFetch(`${API_SOCIAL_POSTS}`, {
+    method,
+    body: JSON.stringify({ title, body, tags, media }),
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to create post");
+  if (response.ok) {
+    alert("Post created successfully!");
+  } else {
+    throw new Error("Failed to create the post");
   }
 
-  return response.json(); // Return the JSON response
+  return await response.json();
 }

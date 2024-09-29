@@ -1,7 +1,6 @@
 import { authFetch } from "../authFetch";
 import { API_AUTH_LOGIN } from "../constants";
-import * as storage from "../../storage/storage";
-import router from "../../router/index.js";
+import { save } from "../../storage/save.js";
 
 export async function login(profile) {
   const response = await authFetch(API_AUTH_LOGIN, {
@@ -14,17 +13,13 @@ export async function login(profile) {
       data: { accessToken, ...user },
     } = await response.json();
 
-    if (accessToken) {
-      storage.save("token", accessToken);
-      storage.save("profile", user);
-      console.log("User profile stored successfully:", user);
-
-      router("/post/edit/");
-      console.log("Router ---> redirecting to /post/edit/");
+    if (response.ok) {
+      const { accessToken, ...profile } = (await response.json()).data;
+      save("token", accessToken);
+      save("profile", profile);
+      return profile;
     } else {
-      console.error("Failed to get access to token");
+      await handleErrors(response);
     }
-  } else {
-    throw new Error("Login failed");
   }
 }
