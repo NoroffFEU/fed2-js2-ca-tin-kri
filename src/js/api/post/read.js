@@ -9,3 +9,4 @@ export async function readPosts(limit = 12, page = 1, tag) {
 }
 
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {}
+//readPost same as getPost

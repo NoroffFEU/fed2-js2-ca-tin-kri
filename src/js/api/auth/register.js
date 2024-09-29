@@ -15,32 +15,3 @@ export async function register(profile) {
 
   throw new Error("Could not register the account");
 }
-
-// export async function register({
-//   name,
-//   email,
-//   password,
-//   bio,
-//   banner,
-//   avatar,
-// }) {}
-
-// const method = "post";
-
-// export async function register(profile) {
-//   const registerURL = API_AUTH_REGISTER;
-//   console.log(registerURL);
-//   const body = JSON.stringify(profile);
-
-//   const response = await fetch(registerURL, {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     method,
-//     body,
-//   });
-
-//   const result = await response.json();
-//   alert("You are now registered!");
-//   return result;
-// }
